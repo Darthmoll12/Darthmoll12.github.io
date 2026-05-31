@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Event Cameras: What They Are and Why They're Weird"
-date: 2026-06-01
+date: 2026-05-31
 category: research notes
 tags: [neuromorphic, sensors, computer-vision, ORNL]
 read_time: 6
