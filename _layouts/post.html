@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{{ page.title }} — Nathaniel Moll</title>
+<meta name="description" content="{{ page.excerpt | strip_html | truncate: 160 }}" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #fffcf2;
+    --bg-elev: #0c465e;
+    --bg-card: #889fac8c;
+    --border: #0c465e;
+    --border-bright: #0c465e;
+    --ink: #252422;
+    --ink-dim: #252422;
+    --ink-faint: #252422;
+    --ink-nav: #ffffff;
+    --accent: #0c465e;
+    --accent-dim: #0c465e;
+    --accent-glow: rgba(160, 136, 254, 0.12);
+    --warn: #ffb347;
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'Inter Tight', -apple-system, sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 400;
+    line-height: 1.6;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* Grid background texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 64px 64px;
+    opacity: 0.25;
+    mask-image: radial-gradient(ellipse at center, black 0%, transparent 75%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Subtle grain */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 1;
+    mix-blend-mode: overlay;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 32px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ─── NAV ─────────────────────────────────────── */
+  nav {
+    position: sticky;
+    top: 0;
+    background: rgba(10, 13, 12, 0.82);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+    padding: 16px 0;
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+  .logo {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--ink-nav);
+    letter-spacing: 0.02em;
+    text-decoration: none;
+  }
+  .logo::before { content: '▸ '; color: var(--ink-nav); }
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    font-family: var(--mono);
+    font-size: 12px;
+  }
+  .nav-links a {
+    color: var(--ink-nav);
+    text-decoration: none;
+    transition: color 0.2s;
+    letter-spacing: 0.02em;
+  }
+  .nav-links a:hover { color: var(--bg-card); }
+  .nav-links a::before { content: '/ '; color: var(--ink-nav); }
+  .nav-links a.active { color: var(--bg-card); }
+
+  /* ─── POST HEADER ─────────────────────────────── */
+  .post-header {
+    padding: 90px 0 60px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  .post-meta-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.1s forwards;
+  }
+  .post-meta-top::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--accent-dim);
+  }
+  .post-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    font-size: clamp(36px, 5vw, 68px);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    margin-bottom: 28px;
+    max-width: 820px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.25s forwards;
+  }
+  .post-title em {
+    font-style: italic;
+    color: var(--accent);
+    font-feature-settings: "ss01";
+  }
+  .post-byline {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-faint);
+    opacity: 0;
+    animation: fadeUp 0.9s 0.4s forwards;
+  }
+  .post-byline .sep { opacity: 0.4; }
+  .post-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.55s forwards;
+  }
+  .post-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 3px 8px;
+    border: 1px solid var(--border-bright);
+    color: var(--ink-dim);
+    border-radius: 2px;
+    text-transform: lowercase;
+    letter-spacing: 0.04em;
+  }
+
+  /* ─── POST BODY ───────────────────────────────── */
+  .post-layout {
+    display: grid;
+    grid-template-columns: 1fr 220px;
+    gap: 80px;
+    padding: 72px 0 100px;
+    align-items: start;
+  }
+
+  .post-content {
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--ink);
+    max-width: 700px;
+  }
+
+  .post-content h2 {
+    font-family: var(--serif);
+    font-size: clamp(26px, 3vw, 36px);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin: 56px 0 20px;
+    color: var(--ink);
+  }
+  .post-content h2 em { color: var(--accent); font-style: italic; }
+
+  .post-content h3 {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    margin: 40px 0 14px;
+    color: var(--ink);
+  }
+
+  .post-content p { margin-bottom: 22px; }
+
+  .post-content a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    transition: opacity 0.2s;
+  }
+  .post-content a:hover { opacity: 0.7; }
+
+  .post-content strong { font-weight: 600; color: var(--ink); }
+
+  .post-content em {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.05em;
+  }
+
+  .post-content ul, .post-content ol {
+    margin: 0 0 22px 0;
+    padding-left: 0;
+    list-style: none;
+  }
+  .post-content ul li, .post-content ol li {
+    padding: 10px 0 10px 24px;
+    position: relative;
+    border-top: 1px solid rgba(12, 70, 94, 0.15);
+    font-size: 16px;
+    color: var(--ink-dim);
+  }
+  .post-content ul li:last-child,
+  .post-content ol li:last-child { border-bottom: 1px solid rgba(12, 70, 94, 0.15); }
+  .post-content ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent-dim);
+    font-family: var(--mono);
+    font-size: 13px;
+  }
+  .post-content ol { counter-reset: list; }
+  .post-content ol li::before {
+    counter-increment: list;
+    content: counter(list, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    color: var(--accent-dim);
+    font-family: var(--mono);
+    font-size: 11px;
+    top: 12px;
+  }
+
+  .post-content blockquote {
+    border-left: 2px solid var(--accent);
+    background: var(--bg-card);
+    padding: 20px 24px;
+    margin: 32px 0;
+    font-family: var(--serif);
+    font-size: 19px;
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+  .post-content blockquote p { margin: 0; }
+
+  .post-content pre {
+    background: #0d1117;
+    border: 1px solid var(--border);
+    border-left: 2px solid var(--accent);
+    padding: 24px 28px;
+    overflow-x: auto;
+    margin: 32px 0;
+    border-radius: 0;
+  }
+  .post-content code {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: #e6edf3;
+    line-height: 1.7;
+  }
+  .post-content p code, .post-content li code {
+    background: rgba(12, 70, 94, 0.1);
+    color: var(--accent);
+    padding: 2px 6px;
+    border-radius: 2px;
+    font-size: 13px;
+    border: 1px solid rgba(12, 70, 94, 0.2);
+  }
+
+  .post-content hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 52px 0;
+  }
+
+  .post-content img {
+    width: 100%;
+    border: 1px solid var(--border);
+    display: block;
+    margin: 32px 0;
+  }
+
+  /* ─── SIDEBAR ─────────────────────────────────── */
+  .post-sidebar {
+    position: sticky;
+    top: 90px;
+    font-family: var(--mono);
+    font-size: 11px;
+  }
+  .sidebar-label {
+    color: var(--accent-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .sidebar-label::before {
+    content: '';
+    width: 16px;
+    height: 1px;
+    background: var(--accent-dim);
+  }
+  .sidebar-nav {
+    list-style: none;
+    border-left: 1px solid var(--border);
+    padding-left: 16px;
+  }
+  .sidebar-nav li { margin-bottom: 10px; }
+  .sidebar-nav a {
+    color: var(--ink-faint);
+    text-decoration: none;
+    line-height: 1.4;
+    transition: color 0.2s;
+    display: block;
+  }
+  .sidebar-nav a:hover { color: var(--accent); }
+  .sidebar-back {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+  .sidebar-back a {
+    color: var(--ink-faint);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s;
+  }
+  .sidebar-back a:hover { color: var(--accent); }
+  .sidebar-back a::before { content: '←'; }
+
+  /* ─── FOOTER ──────────────────────────────────── */
+  footer {
+    padding: 60px 0 40px;
+    border-top: 1px solid var(--border);
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-faint);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    position: relative;
+    z-index: 2;
+  }
+  footer .sig { color: var(--ink-dim); }
+
+  /* ─── ANIMATIONS ──────────────────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── RESPONSIVE ──────────────────────────────── */
+  @media (max-width: 900px) {
+    .post-layout { grid-template-columns: 1fr; gap: 0; }
+    .post-sidebar { display: none; }
+  }
+  @media (max-width: 768px) {
+    .container { padding: 0 20px; }
+    .post-header { padding: 70px 0 40px; }
+    .nav-links { gap: 18px; }
+    .nav-links a { font-size: 11px; }
+    .post-layout { padding: 48px 0 80px; }
+  }
+
+  /* ─── SELECTION / SCROLLBAR ───────────────────── */
+  ::selection { background: var(--accent); color: var(--bg); }
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border-bright); }
+  ::-webkit-scrollbar-thumb:hover { background: var(--accent-dim); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <a href="/" class="logo">nate.moll</a>
+    <div class="nav-links">
+      <a href="/#about">about</a>
+      <a href="/#research">research</a>
+      <a href="/#publications">publications</a>
+      <a href="/#contact">contact</a>
+      <a href="/blog" class="active">blog</a>
+    </div>
+  </div>
+</nav>
+
+<header class="post-header">
+  <div class="container">
+    <div class="post-meta-top">
+      {{ page.date | date: "%B %d, %Y" }}
+      {% if page.category %}<span class="sep">·</span>{{ page.category }}{% endif %}
+    </div>
+    <h1 class="post-title">{{ page.title }}</h1>
+    <div class="post-byline">
+      <span>Nathaniel Moll</span>
+      {% if page.read_time %}<span class="sep">·</span><span>{{ page.read_time }} min read</span>{% endif %}
+    </div>
+    {% if page.tags %}
+    <div class="post-tags">
+      {% for tag in page.tags %}
+        <span class="post-tag">{{ tag }}</span>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</header>
+
+<div class="container">
+  <div class="post-layout">
+
+    <article class="post-content">
+      {{ content }}
+    </article>
+
+    <aside class="post-sidebar">
+      <div class="sidebar-label">on this page</div>
+      <ul class="sidebar-nav" id="toc"></ul>
+      <div class="sidebar-back">
+        <a href="/blog">all posts</a>
+      </div>
+    </aside>
+
+  </div>
+</div>
+
+<footer>
+  <div class="container" style="display:flex; justify-content:space-between; width:100%; flex-wrap:wrap; gap:16px;">
+    <span class="sig">© 2026 Nathaniel Moll · Lynchburg, VA</span>
+    <span><a href="/blog" style="color: inherit; text-decoration: none;">← all posts</a></span>
+  </div>
+</footer>
+
+<script>
+  // Auto-build table of contents from h2/h3 headings
+  const toc = document.getElementById('toc');
+  const headings = document.querySelectorAll('.post-content h2, .post-content h3');
+  headings.forEach((h, i) => {
+    const id = 'section-' + i;
+    h.id = id;
+    const li = document.createElement('li');
+    li.style.paddingLeft = h.tagName === 'H3' ? '12px' : '0';
+    const a = document.createElement('a');
+    a.href = '#' + id;
+    a.textContent = h.textContent;
+    li.appendChild(a);
+    toc.appendChild(li);
+  });
+</script>
+
+</body>
+</html>
