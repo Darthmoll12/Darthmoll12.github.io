@@ -637,18 +637,19 @@
         So I started building data analysis workflows myself. I developed machine learning pipelines for dynamic light scattering data from DNA nanoparticles,
         taught myself neural network and deep learning fundamentals, and began thinking about the biological systems underlying what I was studying,
         similar to how a systems engineer would think about a vehicle: interacting signals, states, and transitions
-        that can be <em>modeled</em>. My upcoming SULI at Oak Ridge working on multi-sensor inputs for scene-data fusion 
-        is a step towards the engineering mindset that will serve me well in designing and building future human-centered projects.
+        that can be <em>modeled</em>. My internship at Oak Ridge National Laboratory allowed me to work on multi-sensor inputs for scene-data fusion to develop algorithms supporting
+        nuclear nonproliferation and safegaurding. It was here that I connected with scientists working on neuromorphic computing applications in nuclear nonproliferation.
+        Talking with them got me thinking about how I could use neuromorphic computing in my own domain of biochemistry to address a significant bottleneck in healthcare.
       </p>
       <p>
-        All of these experiences have inspired me to start my most recent project: an undergraduate research thesis investigating the feasibility of applying neuromorphic computing
+        And that is what leads me to my most recent project: an undergraduate research thesis investigating the feasibility of applying neuromorphic computing
         algorithms to analyze circulating tumor DNA biomarkers in the blood. If successful, my research could inform the production of 
         <span class="highlight">rapid point-of-care liquid biopsy</span>
         devices for non-invasive cancer monitoring.
       </p>
       <p>
-        My long term goal is to establish the interdisciplinary skillset needed for true innovation in the 21st century. With all of these tools in mind, I aim to strategically position myself
-        in the radically changing technological landscape by directly advancing human health on Earth and hopefully, beyond.
+        In the meantime, my long term goal is to establish the interdisciplinary skillset needed for true innovation in the 21st century. 
+        Building upon these experiences, I aim to learn about AI systems deeply and how to use them to accelerate our understanding of biology. I believe that the best is yuet to come with molecular biology!
       </p>
       <p>
         If you're interested in my work (present or future direction), please reach out and connect!
@@ -664,6 +665,37 @@
     </div>
 
     <div class="projects">
+
+      <!-- APOGEE -->
+      <div class="project reveal">
+        <div class="project-meta">
+          <span class="date">2026.08 — present</span>
+          <span class="inst">Liberty University</span>
+          <span class="inst">Lynchburg, VA</span>
+          <div class="tags">
+            <span class="tag">wearables</span>
+            <span class="tag">physiological sensing</span>
+            <span class="tag">signal processing</span>
+          </div>
+        </div>
+        <div class="project-body">
+          <h3>
+            Ambulatory Physiological Observer with Gaussian Error Estimation (APOGEE) Wearable Device
+            <span class="status status-active">active</span>
+          </h3>
+          <p>
+            Developing a wearable device for continuous estimation of exertion level using various biomedical sensors such as ECE, PPG, and skin temperature. Implementing a mathematical Kalman filter
+            for continuous state estimation from physiological data.
+          </p>
+          <ul>
+            <li>Assembled microcontrollers, circuit boards, and sensors together into a compact package</li>
+            <li>Modeled and 3D-printed a wearable enclosure for the circuitry to fit into</li>
+            <li>Soldered header pins to each board and performed wire management to complete assembly</li>
+            <li>Wrote original <strong>firmware in C++</strong> to direct sensor-fusion data transfer logic, interrupt-service routines, and I2C data protocols</li>
+            <li>Updates listed here as the project progresses.</li>
+          </ul>
+        </div>
+      </div>
 
       <!-- ORNL -->
       <div class="project reveal">
@@ -681,7 +713,6 @@
         <div class="project-body">
           <h3>
             Multi-sensor scene fusion for vehicle identification
-            <span class="status status-upcoming">upcoming</span>
           </h3>
           <p>
             Awarded the DOE Science Undergraduate Laboratory Internship (SULI) under the
@@ -690,8 +721,9 @@
             motion-based features used in vehicle identification and re-identification.
           </p>
           <ul>
-            <li>Applied ML algorithms for cross-modal feature extraction and characterization</li>
-            <li>Analyses intended to support peer-reviewed publication</li>
+            <li>Designed and built an end-to-end <strong>LiDAR data systems pipeline</strong> (Python) that isolated moving vehicles from a static background and generated annotated datasets for training a LiDAR object detection model</li>
+            <li>Deployed and trained a <strong>YOLO</strong> computer vision model to benchmark LiDAR, stereo, and neuromorphic sensor modalities, reaching <strong>87% detection performance</strong> on the first training pass across 17,000+ 2D-projected LiDAR frames</li>
+            <li>Performed cyber-physical operations (networking, power, data acquisition, sensor timestamp synchronization) to troubleshoot and maintain each capture node for scene-accurate field data collection</li>
           </ul>
         </div>
       </div>
@@ -721,7 +753,8 @@
             point-of-care liquid biopsy devices capable of giving results in minutes.
           </p>
           <ul>
-            <li>Project initiated April 2026; experimental design and computational architecture in progress.</li>
+            <li>Project initiated April 2026; dataset construction and model architecture configuration complete.</li>
+            <li>Collaborating with computer scientists from Oak Ridge National Laboratory.</li>
             <li>Updates listed here as thesis progresses.</li>
           </ul>
         </div>
@@ -742,18 +775,22 @@
         </div>
         <div class="project-body">
           <h3>
-            Fluorinated molecularly imprinted polymers for PFAS detection
+            Fluorinated molecularly imprinted polymers for PFAS and pesticide detection
             <span class="status status-active">active</span>
           </h3>
           <p>
-            Working in a 5-member synthesis group designing fluorinated MIPs (fMIPs) that
+            Research team lead in a polymer synthesis group designing fluorinated MIPs (fMIPs) that
             selectively bind PFAS contaminants, toward high-sensitivity chemical sensors.
           </p>
           <ul>
-            <li><strong>Improved reaction yield to 75%</strong> in key steps by optimizing extraction and wash cycles</li>
-            <li>Designed flash-chromatography setups to remove residual water and contaminants</li>
-            <li>Characterized novel compounds by IR and NMR to verify structure and purity</li>
-            <li>Presented at a regional conference; awarded a <strong>$1,000 research grant</strong></li>
+            <li><strong>Raised reaction yield to as high as 75%</strong> by optimizing extraction and wash-cycle protocols for imprinted polymer synthesis</li>
+            <li>Researched an alternative reaction procedure after poor yields, bringing product yield up by <strong>25%</strong></li>
+            <li>Designed a flash-chromatography setup to remove residual water and contaminants, improving purity for high-sensitivity PFAS sensor testing</li>
+            <li>Verified novel molecular structures via IR and NMR spectroscopy</li>
+            <li>Directed research tasks, trained younger students on reaction methods, and presented weekly progress updates to the faculty mentor and team</li>
+            <li>Used AI tools such as Claude to develop formal reaction protocols, compile literature to inform procedures, and troubleshoot extraction and yield issues</li>
+            <li>Presented at the Virginia Academy of Science Annual Meeting; awarded a <strong>$1,000 research grant</strong></li>
+            <li><a href="https://digitalcommons.liberty.edu/research_symp/2026/posters/131/" target="_blank" rel="noopener">View the research symposium poster →</a></li>
           </ul>
         </div>
       </div>
@@ -783,11 +820,12 @@
             biosensing applications.
           </p>
           <ul>
-            <li>Ran <strong>500+ DLS assays</strong> on mercury–DNA samples</li>
-            <li>Independently built an <strong>unsupervised ML pipeline</strong> to analyze noisy, complex DLS signals — revealing size distributions too wide for classical DLS fitting</li>
-            <li>Assembled an SEM protocol to directly visualize DNA nanoparticles; imagery confirmed the ML-derived size distributions</li>
-            <li>Designed spectrofluorometric assays that resolved a gap in the literature: determined a <strong>3:1 Hg:DNA binding ratio</strong>, a <strong>14.4 µM K<sub>d</sub></strong>, and a <strong>2.81 cooperativity constant</strong></li>
-            <li>Delivered a 15-minute final talk to 30+ faculty and students</li>
+            <li>Independently designed spectrofluorometric and DLS assays, including benchtop formulation and incubation of mercury–DNA samples</li>
+            <li>Ran <strong>500+ DLS assays</strong> on mercury–DNA samples and engineered a custom <strong>unsupervised ML pipeline</strong> (Python/TensorFlow) to resolve noisy, complex size-distribution signals</li>
+            <li>Determined a novel <strong>3:1 Hg:DNA binding ratio</strong> (<strong>K<sub>d</sub> = 14.4 µM</strong>; <strong>cooperativity = 2.81</strong>), resolving a gap in the literature</li>
+            <li>Designed and executed an SEM imaging protocol to directly visualize nanoparticle morphology, confirming the ML-derived size distributions</li>
+            <li>Implemented statistical algorithms in Python, such as PCA and clustering, to visualize DNA sample data</li>
+            <li>Delivered a 15-minute oral capstone presentation to 30+ faculty and students</li>
           </ul>
         </div>
       </div>
@@ -814,9 +852,9 @@
             and ran validation testing on driver seat suspension systems.
           </p>
           <ul>
-            <li>Ran high-frequency shake tests to flag faulty shock absorbers and electronics against company damping specs</li>
-            <li>Designed a new air-canister bracket that reduced a fabrication bottleneck and cut seat weight</li>
-            <li>Re-engineered the demo unit in SolidWorks with full ASME Y14.5-compliant drawings for manufacturing</li>
+            <li>Ran high-frequency shake-table tests to verify oscillation-damping specs on industrial seat suspensions</li>
+            <li>Designed a new air-canister mounting bracket that cut a fabrication bottleneck and reduced seat weight</li>
+            <li>Redesigned a portable fire-suppression demo unit in SolidWorks under tight dimensional constraints, with ASME Y14.5-compliant drawings for every part to guide prototype fabrication</li>
           </ul>
         </div>
       </div>
@@ -843,9 +881,10 @@
             driving end-to-end design, manufacturing, and assembly under NASA's review process.
           </p>
           <ul>
-            <li>Delivered a suspension capable of <strong>7 inches of wheel travel</strong>, resolving maneuverability risk on rough terrain</li>
-            <li>Coordinated systems integration and interface control across multiple subteams</li>
-            <li>Presented <strong>two Operational Readiness Reviews</strong> to NASA engineers</li>
+            <li>Led the suspension from design through fabrication, developing a new geometry delivering <strong>7 inches of total wheel travel</strong></li>
+            <li>Modeled the design in SolidWorks with ASME Y14.5-compliant drawings</li>
+            <li>Coordinated systems integration across sub-teams</li>
+            <li>Presented Operational Readiness Reviews to NASA engineers to validate design progress</li>
           </ul>
         </div>
       </div>
